@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sunnyweather.android.MainActivity
 import com.sunnyweather.android.R
 import com.sunnyweather.android.ui.weather.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
@@ -33,7 +34,7 @@ class PlaceFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        if (viewModel.isSavedPlace()) {
+        if (viewModel.isSavedPlace() && activity is MainActivity) {
             val place = viewModel.getSavedPlace()
             val intent = Intent(context, WeatherActivity::class.java).apply {
                 putExtra("location_lng", place.location.lng)
@@ -68,10 +69,6 @@ class PlaceFragment : Fragment() {
                 iv_place_bg.visibility = View.GONE
                 viewModel.placeList.clear()
                 viewModel.placeList.addAll(places)
-                for (i in viewModel.placeList) {
-                    Log.d("onActivityCreated: ", "${i.name},${i.address}")
-                }
-                Log.d( "onActivityCreated: ",Thread.currentThread().name)
                 adapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(activity,"未查询到任何地点",Toast.LENGTH_SHORT).show()

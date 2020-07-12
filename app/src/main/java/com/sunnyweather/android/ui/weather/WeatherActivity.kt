@@ -17,6 +17,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sunnyweather.android.R
 import com.sunnyweather.android.logic.model.Weather
 import com.sunnyweather.android.logic.model.getSky
@@ -72,7 +74,6 @@ class WeatherActivity : AppCompatActivity() {
         viewModel.weatherLiveDate.observe(this){ result ->
             val weather = result.getOrNull()
             if (weather != null) {
-                Log.d( "onCreate: ","数据传入")
                 showWeatherInfo(weather)
             } else {
                 Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_SHORT).show()
@@ -80,7 +81,7 @@ class WeatherActivity : AppCompatActivity() {
             }
             swipeRefresh.isRefreshing = false
         }
-        swipeRefresh.setColorSchemeResources(R.color.design_default_color_primary)
+        swipeRefresh.setColorSchemeResources(R.color.black)
         refreshWeather()
         swipeRefresh.setOnRefreshListener {
             refreshWeather()
@@ -105,6 +106,21 @@ class WeatherActivity : AppCompatActivity() {
         ll_forecast_layout.removeAllViews()
         nowLayout.setBackgroundResource(getSky(realtime.skycon).bg)
         val days = daily.skycon.size
+        val line = LayoutInflater.from(this)
+            .inflate(R.layout.include_weather_forecast_line, ll_forecast_layout, false)
+        ll_forecast_layout.addView(line)
+        val rv = (LayoutInflater.from(this)
+            .inflate(
+                R.layout.include_weather_forecast_rv,
+                ll_forecast_layout,
+                false
+            )) as RecyclerView
+        rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rv.adapter = HourlyAdapter(weather.hourly)
+        ll_forecast_layout.addView(rv)
+        val line1 = LayoutInflater.from(this)
+            .inflate(R.layout.include_weather_forecast_line, ll_forecast_layout, false)
+        ll_forecast_layout.addView(line1)
         for (i in 0 until days) {
             val skycon = daily.skycon[i]
             val temperature = daily.temperature[i]
@@ -122,6 +138,9 @@ class WeatherActivity : AppCompatActivity() {
             val tempText = "${temperature.min.toInt()} ~ ${temperature.max.toInt()} ℃"
             temperatureInfo.text = tempText
             ll_forecast_layout.addView(view)
+            val line2 = LayoutInflater.from(this)
+                .inflate(R.layout.include_weather_forecast_line, ll_forecast_layout, false)
+            ll_forecast_layout.addView(line2)
         }
         val lifeIndex = daily.lifeIndex
         tv_life_index_coldRisk.text = lifeIndex.coldRisk[0].desc
@@ -129,5 +148,10 @@ class WeatherActivity : AppCompatActivity() {
         tv_life_index_ultravioletText.text = lifeIndex.ultraviolet[0].desc
         tv_life_index_carWashing.text = lifeIndex.carWashing[0].desc
         weatherLayout.visibility = View.VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshWeather()
     }
 }

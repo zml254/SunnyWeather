@@ -20,6 +20,8 @@ object SunnyWeatherNetwork {
         weatherService.getDailyResponse(lng, lat).await()
     suspend fun getRealtimeWeather(lng: String, lat: String) =
         weatherService.getRealtimeWeather(lng, lat).await()
+    suspend fun getHourlyResponse(lng: String, lat: String) =
+        weatherService.getHourlyResponse(lng, lat).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine {continuation ->
@@ -38,10 +40,7 @@ object SunnyWeatherNetwork {
                         )
                     }
                 }
-
             })
-
-
         }
     }
 

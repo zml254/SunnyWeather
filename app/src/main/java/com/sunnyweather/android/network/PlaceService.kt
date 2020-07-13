@@ -1,7 +1,7 @@
-package com.sunnyweather.android.logic.network
+package com.sunnyweather.android.network
 
 import com.sunnyweather.android.SunnyWeatherApplication
-import com.sunnyweather.android.logic.model.PlaceResponse
+import com.sunnyweather.android.bean.PlaceResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

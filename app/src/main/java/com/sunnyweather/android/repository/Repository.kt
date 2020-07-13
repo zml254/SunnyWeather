@@ -1,14 +1,13 @@
-package com.sunnyweather.android.logic
+package com.sunnyweather.android.repository
 
 import androidx.lifecycle.liveData
-import com.sunnyweather.android.logic.dao.PlaceDao
-import com.sunnyweather.android.logic.model.Place
-import com.sunnyweather.android.logic.model.Weather
-import com.sunnyweather.android.logic.network.SunnyWeatherNetwork
+import com.sunnyweather.android.dao.PlaceDao
+import com.sunnyweather.android.bean.Place
+import com.sunnyweather.android.bean.Weather
+import com.sunnyweather.android.network.SunnyWeatherNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import okhttp3.Dispatcher
 import java.lang.Exception
 import java.lang.RuntimeException
 

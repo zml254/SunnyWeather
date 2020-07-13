@@ -1,4 +1,4 @@
-package com.sunnyweather.android.ui.weather
+package com.sunnyweather.android.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sunnyweather.android.R
-import com.sunnyweather.android.logic.model.HourlyResponse
-import com.sunnyweather.android.logic.model.getSky
+import com.sunnyweather.android.bean.HourlyResponse
+import com.sunnyweather.android.bean.getSky
 
 class HourlyAdapter(private val hourly: HourlyResponse.Hourly) :
     RecyclerView.Adapter<HourlyAdapter.ViewHolder>() {

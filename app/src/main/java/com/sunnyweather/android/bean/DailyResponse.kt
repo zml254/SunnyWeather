@@ -1,6 +1,5 @@
-package com.sunnyweather.android.logic.model
+package com.sunnyweather.android.bean
 
-import android.provider.ContactsContract
 import com.google.gson.annotations.SerializedName
 import java.util.*
 

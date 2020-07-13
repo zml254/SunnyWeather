@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.constraintlayout.motion.widget.MotionLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerLayout"
+    android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.weather.WeatherActivity">
+    tools:context=".ui.WeatherActivity"
+    app:layoutDescription="@xml/activity_weather_scene">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/swipeRefresh">
 
-
         <ScrollView
             android:id="@+id/weatherLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
             android:scrollbars="none">
 
             <LinearLayout
@@ -40,20 +41,73 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@color/design_default_color_primary" >
 
-        <fragment
-            android:id="@+id/placeFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.sunnyweather.android.ui.place.PlaceFragment"
-            android:layout_marginTop="20dp" />
-    </FrameLayout>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true"-->
+<!--        android:background="@color/design_default_color_primary" >-->
+
+<!--        <fragment-->
+<!--            android:id="@+id/placeFragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:name="com.sunnyweather.android.ui.PlaceFragment"-->
+<!--            android:layout_marginTop="20dp" />-->
+<!--    </FrameLayout>-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_weather_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        app:backgroundTint="#03DAC5"
+        android:src="@drawable/ic_fab_more"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_weather_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        app:backgroundTint="#FF5722"
+        android:src="@drawable/ic_fab_refresh"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
+        app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
+        app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
+        app:layout_constraintTop_toTopOf="@+id/fab_weather_more"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_weather_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        app:backgroundTint="#E91E63"
+        android:src="@drawable/ic_fab_home"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
+        app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
+        app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
+        app:layout_constraintTop_toTopOf="@+id/fab_weather_more"
+        android:contentDescription="TODO" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_weather_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="mini"
+        app:backgroundTint="#2196F3"
+        android:src="@drawable/ic_fab_search"
+        app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
+        app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
+        app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
+        app:layout_constraintTop_toTopOf="@+id/fab_weather_more" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

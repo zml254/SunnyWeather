@@ -1,10 +1,10 @@
-package com.sunnyweather.android.logic.dao
+package com.sunnyweather.android.dao
 
 import android.content.Context
 import androidx.core.content.edit
 import com.google.gson.Gson
 import com.sunnyweather.android.SunnyWeatherApplication
-import com.sunnyweather.android.logic.model.Place
+import com.sunnyweather.android.bean.Place
 
 object PlaceDao {
 

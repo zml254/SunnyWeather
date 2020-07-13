@@ -1,27 +1,26 @@
-package com.sunnyweather.android.ui.weather
+package com.sunnyweather.android.ui
 
-import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.inputmethod.InputMethod
-import android.view.inputmethod.InputMethodManager
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sunnyweather.android.MainActivity
 import com.sunnyweather.android.R
-import com.sunnyweather.android.logic.model.Weather
-import com.sunnyweather.android.logic.model.getSky
+import com.sunnyweather.android.SunnyWeatherApplication.Companion.context
+import com.sunnyweather.android.bean.Weather
+import com.sunnyweather.android.bean.getSky
+import com.sunnyweather.android.ui.adapter.HourlyAdapter
+import com.sunnyweather.android.viewmodel.WeatherViewModel
 import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.include_weathe_now.*
 import kotlinx.android.synthetic.main.include_weather_forecast.*
@@ -32,6 +31,7 @@ import java.util.*
 class WeatherActivity : AppCompatActivity() {
 
     val viewModel by lazy{ ViewModelProvider(this).get(WeatherViewModel::class.java)}
+    private var isRefresh = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,28 +40,6 @@ class WeatherActivity : AppCompatActivity() {
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         window.statusBarColor = Color.TRANSPARENT
         setContentView(R.layout.activity_weather)
-        bt_now_nav.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
-        }
-        drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener{
-            override fun onDrawerStateChanged(newState: Int) {
-            }
-
-            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-            }
-
-            override fun onDrawerClosed(drawerView: View) {
-                val manager = getSystemService(Context.INPUT_METHOD_SERVICE)
-                        as InputMethodManager
-                manager.hideSoftInputFromWindow(
-                    drawerView.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS
-                )
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-            }
-        })
         if (viewModel.locationLng.isEmpty()) {
             viewModel.locationLng = intent.getStringExtra("location_lng") ?: ""
         }
@@ -74,12 +52,23 @@ class WeatherActivity : AppCompatActivity() {
         viewModel.weatherLiveDate.observe(this){ result ->
             val weather = result.getOrNull()
             if (weather != null) {
+                swipeRefresh.setBackgroundColor(Color.WHITE)
                 showWeatherInfo(weather)
             } else {
                 Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
+                weatherLayout.visibility = View.GONE
+                swipeRefresh.setBackgroundResource(R.drawable.bg_error)
             }
             swipeRefresh.isRefreshing = false
+        }
+        fab_weather_refresh.setOnClickListener {
+            refreshWeather()
+        }
+        fab_weather_home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("run", true)
+            startActivity(intent)
         }
         swipeRefresh.setColorSchemeResources(R.color.black)
         refreshWeather()
@@ -90,11 +79,16 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     fun refreshWeather() {
+        weatherLayout.visibility = View.GONE
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
         swipeRefresh.isRefreshing = true
     }
 
     private fun showWeatherInfo(weather: Weather) {
+        val animator =
+            AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+        weatherLayout.layoutAnimation = animator
+        weatherLayout.scheduleLayoutAnimation()
         tv_now_placeName.text = viewModel.placeName
         val realtime = weather.realtime
         val daily = weather.daily
@@ -116,7 +110,8 @@ class WeatherActivity : AppCompatActivity() {
                 false
             )) as RecyclerView
         rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rv.adapter = HourlyAdapter(weather.hourly)
+        rv.adapter =
+            HourlyAdapter(weather.hourly)
         ll_forecast_layout.addView(rv)
         val line1 = LayoutInflater.from(this)
             .inflate(R.layout.include_weather_forecast_line, ll_forecast_layout, false)

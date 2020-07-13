@@ -1,9 +1,9 @@
-package com.sunnyweather.android.logic.network
+package com.sunnyweather.android.network
 
 import com.sunnyweather.android.SunnyWeatherApplication
-import com.sunnyweather.android.logic.model.DailyResponse
-import com.sunnyweather.android.logic.model.HourlyResponse
-import com.sunnyweather.android.logic.model.RealtimeResponse
+import com.sunnyweather.android.bean.DailyResponse
+import com.sunnyweather.android.bean.HourlyResponse
+import com.sunnyweather.android.bean.RealtimeResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

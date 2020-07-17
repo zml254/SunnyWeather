@@ -2,14 +2,15 @@ package com.sunnyweather.android.ui
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,13 +26,14 @@ import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.include_weathe_now.*
 import kotlinx.android.synthetic.main.include_weather_forecast.*
 import kotlinx.android.synthetic.main.include_weather_life_index.*
+import kotlinx.android.synthetic.main.include_weather_sun.*
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class WeatherActivity : AppCompatActivity() {
 
     val viewModel by lazy{ ViewModelProvider(this).get(WeatherViewModel::class.java)}
-    private var isRefresh = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +87,12 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun showWeatherInfo(weather: Weather) {
+        sunView.startAnimator(
+            viewModel.getCurrentAngle(
+                weather.daily.astro[0].sunrise.time,
+                weather.daily.astro[0].sunset.time
+            )
+        )
         val animator =
             AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
         weatherLayout.layoutAnimation = animator
@@ -92,6 +100,7 @@ class WeatherActivity : AppCompatActivity() {
         tv_now_placeName.text = viewModel.placeName
         val realtime = weather.realtime
         val daily = weather.daily
+        val astro = daily.astro
         val currentTempText = "${realtime.temperature.toInt()}℃"
         tv_now_currentTemp.text = currentTempText
         tv_now_currentSky.text = getSky(realtime.skycon).info
@@ -119,8 +128,11 @@ class WeatherActivity : AppCompatActivity() {
         for (i in 0 until days) {
             val skycon = daily.skycon[i]
             val temperature = daily.temperature[i]
-            val view = LayoutInflater.from(this)
-                .inflate(R.layout.include_weather_forecast_item, ll_forecast_layout, false)
+            val view = LayoutInflater.from(this).inflate(
+                R.layout.include_weather_forecast_item,
+                ll_forecast_layout,
+                false
+            )
             val dateInfo = view.findViewById<TextView>(R.id.tv_forecast_item_dataInfo)
             val skyIcon = view.findViewById<ImageView>(R.id.iv_forecast_item_skyIcon)
             val skyInfo = view.findViewById<TextView>(R.id.tv_forecast_item_skyInfo)
@@ -142,7 +154,14 @@ class WeatherActivity : AppCompatActivity() {
         tv_life_index_dressing.text = lifeIndex.dressing[0].desc
         tv_life_index_ultravioletText.text = lifeIndex.ultraviolet[0].desc
         tv_life_index_carWashing.text = lifeIndex.carWashing[0].desc
+        tv_sun_sunRise.text = astro[0].sunrise.time
+        tv_sun_sunSet.text = astro[0].sunset.time
         weatherLayout.visibility = View.VISIBLE
+    }
+
+    override fun onStart() {
+        super.onStart()
+//        sunView.startAnimator()
     }
 
     override fun onResume() {

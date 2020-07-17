@@ -2,11 +2,13 @@ package com.sunnyweather.android.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -51,6 +53,8 @@ class PlaceFragment : Fragment() {
             activity?.finish()
             return
         }
+//        btn_place_search.setOnClickListener {
+//        }
         val layoutManager = LinearLayoutManager(activity)
         rv_place.layoutManager = layoutManager
         adapter = PlaceAdapter(
@@ -77,8 +81,10 @@ class PlaceFragment : Fragment() {
                 viewModel.placeList.clear()
                 viewModel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
-                val animator =
-                    AnimationUtils.loadLayoutAnimation(SunnyWeatherApplication.context, R.anim.layout_animation_fall_down)
+                val animator = AnimationUtils.loadLayoutAnimation(
+                    SunnyWeatherApplication.context,
+                    R.anim.layout_animation_fall_down
+                )
                 rv_place.layoutAnimation = animator
                 rv_place.scheduleLayoutAnimation()
             } else {

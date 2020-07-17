@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/fragment_place_start">
+        <Constraint
+            android:id="@id/et_place_searchPlace"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/search_bg"/>
+
+<!--        <Constraint-->
+<!--            android:id="@id/btn_place_search"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:background="@drawable/ic_fab_search"-->
+<!--            app:layout_constraintTop_toTopOf="@id/et_place_searchPlace"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/et_place_searchPlace"-->
+<!--            app:layout_constraintRight_toRightOf="@id/et_place_searchPlace"/>-->
+
+    </ConstraintSet>
+    <ConstraintSet android:id="@+id/fragment_place_end">
+        <Constraint
+            android:id="@id/et_place_searchPlace"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:hint="输入地址"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/search_bg" />
+
+<!--        <Constraint-->
+<!--            android:id="@id/btn_place_search"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:background="@drawable/ic_fab_search"-->
+<!--            android:rotation="360"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            app:layout_constraintTop_toTopOf="@id/et_place_searchPlace"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/et_place_searchPlace"-->
+<!--            app:layout_constraintRight_toRightOf="@id/et_place_searchPlace"  />-->
+
+    </ConstraintSet>
+
+<!--    <Transition-->
+<!--        app:constraintSetStart="@id/fragment_place_start"-->
+<!--        app:constraintSetEnd="@id/fragment_place_end"-->
+<!--        app:duration="500">-->
+<!--        <OnClick-->
+<!--            app:targetId="@id/btn_place_search"-->
+<!--            app:clickAction="transitionToEnd" />-->
+<!--    </Transition>-->
+
+
+</MotionScene>

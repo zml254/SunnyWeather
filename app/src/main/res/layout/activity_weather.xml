@@ -35,6 +35,8 @@
 
                 <include
                     layout="@layout/include_weather_life_index" />
+
+                <include layout="@layout/include_weather_sun" />
             </LinearLayout>
 
         </ScrollView>

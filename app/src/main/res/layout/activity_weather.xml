@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible"
+            android:background="#EFEFEF"
             android:layoutAnimation="@anim/layout_animation_fall_down"
             android:scrollbars="none">
 
@@ -37,6 +38,9 @@
                     layout="@layout/include_weather_life_index" />
 
                 <include layout="@layout/include_weather_sun" />
+
+                <include layout="@layout/include_weather_wind" />
+
             </LinearLayout>
 
         </ScrollView>
@@ -44,22 +48,6 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-
-<!--    <FrameLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:clickable="true"-->
-<!--        android:focusable="true"-->
-<!--        android:background="@color/design_default_color_primary" >-->
-
-<!--        <fragment-->
-<!--            android:id="@+id/placeFragment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:name="com.sunnyweather.android.ui.PlaceFragment"-->
-<!--            android:layout_marginTop="20dp" />-->
-<!--    </FrameLayout>-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_weather_more"
         android:layout_width="wrap_content"
@@ -87,18 +75,6 @@
         app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
         app:layout_constraintTop_toTopOf="@+id/fab_weather_more"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_weather_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="mini"
-        app:backgroundTint="#E91E63"
-        android:src="@drawable/ic_fab_home"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
-        app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
-        app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
-        app:layout_constraintTop_toTopOf="@+id/fab_weather_more"
-        android:contentDescription="TODO" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_weather_search"
@@ -107,9 +83,9 @@
         app:fabSize="mini"
         app:backgroundTint="#2196F3"
         android:src="@drawable/ic_fab_search"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
-        app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
-        app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
-        app:layout_constraintTop_toTopOf="@+id/fab_weather_more" />
+        app:layout_constraintTop_toTopOf="@id/fab_weather_more"
+        app:layout_constraintBottom_toBottomOf="@id/fab_weather_more"
+        app:layout_constraintLeft_toLeftOf="@id/fab_weather_more"
+        app:layout_constraintRight_toRightOf="@id/fab_weather_more" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

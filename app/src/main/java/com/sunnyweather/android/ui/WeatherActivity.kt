@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.include_weathe_now.*
 import kotlinx.android.synthetic.main.include_weather_forecast.*
 import kotlinx.android.synthetic.main.include_weather_life_index.*
 import kotlinx.android.synthetic.main.include_weather_sun.*
+import kotlinx.android.synthetic.main.include_weather_wind.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,7 +68,7 @@ class WeatherActivity : AppCompatActivity() {
         fab_weather_refresh.setOnClickListener {
             refreshWeather()
         }
-        fab_weather_home.setOnClickListener {
+        fab_weather_search.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("run", true)
             startActivity(intent)
@@ -149,6 +150,8 @@ class WeatherActivity : AppCompatActivity() {
                 .inflate(R.layout.include_weather_forecast_line, ll_forecast_layout, false)
             ll_forecast_layout.addView(line2)
         }
+        tv_wind_size_value.text = viewModel.getWindSpeed(daily.wind[0].avg.speed)
+        tv_wind_direction_value.text = viewModel.getWindDirection(daily.wind[0].avg.direction)
         val lifeIndex = daily.lifeIndex
         tv_life_index_coldRisk.text = lifeIndex.coldRisk[0].desc
         tv_life_index_dressing.text = lifeIndex.dressing[0].desc
@@ -157,11 +160,6 @@ class WeatherActivity : AppCompatActivity() {
         tv_sun_sunRise.text = astro[0].sunrise.time
         tv_sun_sunSet.text = astro[0].sunset.time
         weatherLayout.visibility = View.VISIBLE
-    }
-
-    override fun onStart() {
-        super.onStart()
-//        sunView.startAnimator()
     }
 
     override fun onResume() {

@@ -29,6 +29,8 @@ object Repository {
         emit(result)
     }
 
+    fun getAllPlaces() = PlaceDao.getAllPlaces()
+
     fun savePlace(place: Place) = PlaceDao.savePlace(place)
 
     fun getSavedPlace() = PlaceDao.getSavePlace()

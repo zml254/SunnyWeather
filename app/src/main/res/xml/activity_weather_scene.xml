@@ -28,27 +28,16 @@
             app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
             app:layout_constraintTop_toTopOf="@+id/fab_weather_more" />
         <Constraint
-            android:id="@id/fab_weather_home"
-            app:fabSize="mini"
-            android:rotation="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
-            app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
-            app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
-            app:layout_constraintTop_toTopOf="@+id/fab_weather_more"/>
-        <Constraint
             android:id="@+id/fab_weather_search"
             app:fabSize="mini"
             android:rotation="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
-            app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
-            app:layout_constraintStart_toStartOf="@+id/fab_weather_more"
-            app:layout_constraintTop_toTopOf="@+id/fab_weather_more"/>
+            app:layout_constraintTop_toTopOf="@id/fab_weather_more"
+            app:layout_constraintBottom_toBottomOf="@id/fab_weather_more"
+            app:layout_constraintLeft_toLeftOf="@id/fab_weather_more"
+            app:layout_constraintRight_toRightOf="@id/fab_weather_more" />
 
     </ConstraintSet>
 
@@ -70,30 +59,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:rotation="360"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="70dp"
             app:layout_constraintBottom_toTopOf="@+id/fab_weather_more"
             app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
             app:layout_constraintStart_toStartOf="@+id/fab_weather_more" />
-        <Constraint
-            android:id="@id/fab_weather_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:rotation="360"
-            app:layout_constraintBottom_toBottomOf="@+id/fab_weather_more"
-            app:layout_constraintEnd_toStartOf="@+id/fab_weather_more"
-            app:layout_constraintTop_toTopOf="@+id/fab_weather_more"
-            android:layout_marginRight="50dp" />
+
         <Constraint
             android:id="@id/fab_weather_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="36dp"
             android:rotation="360"
+            android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toTopOf="@+id/fab_weather_more"
-            app:layout_constraintEnd_toStartOf="@+id/fab_weather_more"
-            android:layout_marginRight="36dp" />
+            app:layout_constraintEnd_toEndOf="@+id/fab_weather_more"
+            app:layout_constraintStart_toStartOf="@+id/fab_weather_more" />
     </ConstraintSet>
 
     <Transition

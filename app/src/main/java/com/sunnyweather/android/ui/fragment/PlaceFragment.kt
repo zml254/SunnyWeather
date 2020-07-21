@@ -1,4 +1,4 @@
-package com.sunnyweather.android.ui
+package com.sunnyweather.android.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,10 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
-import com.sunnyweather.android.MainActivity
+import com.sunnyweather.android.ui.activity.MainActivity
 import com.sunnyweather.android.R
 import com.sunnyweather.android.SunnyWeatherApplication
 import com.sunnyweather.android.bean.Place
+import com.sunnyweather.android.ui.activity.WeatherActivity
 import com.sunnyweather.android.ui.adapter.PlaceAdapter
 import com.sunnyweather.android.viewmodel.PlaceViewModel
 import kotlinx.android.synthetic.main.fragment_place.*

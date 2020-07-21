@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sunnyweather.android.R
 import com.sunnyweather.android.bean.Place
-import com.sunnyweather.android.ui.PlaceFragment
-import com.sunnyweather.android.ui.WeatherActivity
+import com.sunnyweather.android.ui.fragment.PlaceFragment
+import com.sunnyweather.android.ui.activity.WeatherActivity
 
 class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: List<Place>) :
     RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {

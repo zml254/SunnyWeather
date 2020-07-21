@@ -1,4 +1,4 @@
-package com.sunnyweather.android.ui
+package com.sunnyweather.android.ui.view
 
 import android.animation.ValueAnimator
 import android.content.Context

@@ -1,7 +1,7 @@
 package com.sunnyweather.android.ui.adapter
 
 import android.animation.TypeEvaluator
-import com.sunnyweather.android.ui.Angle
+import com.sunnyweather.android.bean.Angle
 
 class AngleEvaluator : TypeEvaluator<Angle> {
 

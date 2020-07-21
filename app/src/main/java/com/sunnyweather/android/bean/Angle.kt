@@ -1,4 +1,4 @@
-package com.sunnyweather.android.ui
+package com.sunnyweather.android.bean
 
 data class Angle(val angle: Float) {
     operator fun plus(fl: Float): Any {

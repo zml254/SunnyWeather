@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">SunnyWeather</string>
+    <string name="place_input_address">输入地址</string>
+    <string name="place_search_history">搜索历史</string>
+    <string name="now_sperate">|</string>
+    <string name="forecast_fore">预报</string>
+    <string name="life_index_cold">感冒</string>
+    <string name="life_index_cloth">穿衣</string>
+    <string name="life_index_ray">实时紫外线</string>
+    <string name="life_index_washing_car">洗车</string>
+    <string name="more_more_imformation">更多资讯</string>
+    <string name="sun_sunrise_sunset">日出日落</string>
+    <string name="wind_wind_direciton">风向</string>
+    <string name="wind_wind_speed">风力</string>
+    <string name="home_article_list">文章列表</string>
 </resources>

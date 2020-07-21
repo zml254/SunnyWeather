@@ -1,9 +1,12 @@
 package com.sunnyweather.android.repository
 
 import androidx.lifecycle.liveData
+import com.sunnyweather.android.bean.Article
 import com.sunnyweather.android.dao.PlaceDao
 import com.sunnyweather.android.bean.Place
 import com.sunnyweather.android.bean.Weather
+import com.sunnyweather.android.network.ArticleNetwork
+import com.sunnyweather.android.network.ArticleService
 import com.sunnyweather.android.network.SunnyWeatherNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -28,6 +31,20 @@ object Repository {
         }
         emit(result)
     }
+
+    suspend fun getNavi() = ArticleNetwork.getNaviResponse()
+
+    suspend fun getArticleByWx(id: Int) = ArticleNetwork.getArticleByWx(id)
+
+    suspend fun getWxArticle() = ArticleNetwork.getWxArticle()
+
+    suspend fun getArticle(id: Int) = ArticleNetwork.getArticle(id)
+
+    suspend fun getArticle() = ArticleNetwork.getArticle()
+
+    suspend fun getBanner() = ArticleNetwork.getBanner()
+
+    suspend fun getTree() = ArticleNetwork.getTree()
 
     fun getAllPlaces() = PlaceDao.getAllPlaces()
 

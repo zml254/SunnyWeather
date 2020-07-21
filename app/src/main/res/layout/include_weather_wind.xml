@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/Theme.MaterialComponents.Light"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
+    android:layout_margin="15dp"
     app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="风向风力"
+            android:text="wind_wind_speed_direction"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +33,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="#EFEFEF"
+            android:background="@color/bg_theme_color"
             app:layout_constraintTop_toBottomOf="@id/tv_wind_title" />
 
         <ImageView
@@ -54,7 +53,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:textSize="18sp"
-            android:text="风向"
+            android:text="@string/wind_wind_speed"
             app:layout_constraintTop_toTopOf="@id/iv_wind"
             app:layout_constraintLeft_toRightOf="@id/iv_wind" />
 
@@ -65,7 +64,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginBottom="20dp"
             android:textSize="18sp"
-            android:text="风力"
+            android:text="@string/wind_wind_direciton"
             app:layout_constraintBottom_toBottomOf="@id/iv_wind"
             app:layout_constraintLeft_toRightOf="@id/iv_wind" />
 

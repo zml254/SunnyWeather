@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <fragment
         android:id="@+id/fragment_main_place"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.sunnyweather.android.ui.PlaceFragment" />
+        android:name="com.sunnyweather.android.ui.fragment.PlaceFragment" />
 
 </FrameLayout>

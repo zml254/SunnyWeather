@@ -5,6 +5,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.sunnyweather.android.repository.Repository
 import com.sunnyweather.android.bean.Place
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class PlaceViewModel : ViewModel() {
 

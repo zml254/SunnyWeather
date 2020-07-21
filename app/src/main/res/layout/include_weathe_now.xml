@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="530dp"
     android:fitsSystemWindows="true"
-    android:background="#000000">
+    android:background="@color/black">
 
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_marginEnd="60dp"
         android:ellipsize="middle"
         android:singleLine="true"
-        android:textColor="#FFF"
+        android:textColor="@color/color_white"
         android:textSize="22sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,7 +28,7 @@
         android:id="@+id/tv_now_currentTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
+        android:textColor="@color/color_white"
         android:textSize="70sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:textColor="#fff"
+        android:textColor="@color/color_white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/line"
         app:layout_constraintEnd_toStartOf="@+id/line"
@@ -51,12 +51,12 @@
         app:layout_constraintTop_toTopOf="@id/line" />
 
     <TextView
-        android:id="@+id/line"
+        android:id="@+id/tv_now_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:text="|"
-        android:textColor="#fff"
+        android:text="@string/now_sperate"
+        android:textColor="@color/color_white"
         app:layout_constraintEnd_toStartOf="@+id/tv_now_currentAQI"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_now_currentSky"
@@ -67,12 +67,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:textColor="#fff"
+        android:textColor="@color/color_white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/line"
+        app:layout_constraintBottom_toBottomOf="@id/tv_now_line"
         app:layout_constraintEnd_toEndOf="@+id/tv_now_currentTemp"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/line"
-        app:layout_constraintTop_toTopOf="@id/line" />
+        app:layout_constraintStart_toEndOf="@+id/tv_now_line"
+        app:layout_constraintTop_toTopOf="@id/tv_now_line" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

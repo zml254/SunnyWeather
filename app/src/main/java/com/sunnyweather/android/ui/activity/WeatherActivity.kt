@@ -1,9 +1,8 @@
-package com.sunnyweather.android.ui
+package com.sunnyweather.android.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -15,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.sunnyweather.android.MainActivity
 import com.sunnyweather.android.R
 import com.sunnyweather.android.SunnyWeatherApplication.Companion.context
 import com.sunnyweather.android.bean.Weather
@@ -26,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_weather.*
 import kotlinx.android.synthetic.main.include_weathe_now.*
 import kotlinx.android.synthetic.main.include_weather_forecast.*
 import kotlinx.android.synthetic.main.include_weather_life_index.*
+import kotlinx.android.synthetic.main.include_weather_more.*
 import kotlinx.android.synthetic.main.include_weather_sun.*
 import kotlinx.android.synthetic.main.include_weather_wind.*
 import java.text.SimpleDateFormat
@@ -60,7 +59,7 @@ class WeatherActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "无法成功获取天气信息", Toast.LENGTH_SHORT).show()
                 result.exceptionOrNull()?.printStackTrace()
-                weatherLayout.visibility = View.GONE
+                sv_weather_layout.visibility = View.GONE
                 swipeRefresh.setBackgroundResource(R.drawable.bg_error)
             }
             swipeRefresh.isRefreshing = false
@@ -78,11 +77,15 @@ class WeatherActivity : AppCompatActivity() {
         swipeRefresh.setOnRefreshListener {
             refreshWeather()
         }
+        tv_more_title.setOnClickListener {
+            val intent = Intent(this, MoreActivity::class.java)
+            startActivity(intent)
+        }
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
     }
 
     fun refreshWeather() {
-        weatherLayout.visibility = View.GONE
+        sv_weather_layout.visibility = View.GONE
         viewModel.refreshWeather(viewModel.locationLng, viewModel.locationLat)
         swipeRefresh.isRefreshing = true
     }
@@ -96,8 +99,8 @@ class WeatherActivity : AppCompatActivity() {
         )
         val animator =
             AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
-        weatherLayout.layoutAnimation = animator
-        weatherLayout.scheduleLayoutAnimation()
+        sv_weather_layout.layoutAnimation = animator
+        sv_weather_layout.scheduleLayoutAnimation()
         tv_now_placeName.text = viewModel.placeName
         val realtime = weather.realtime
         val daily = weather.daily
@@ -159,7 +162,7 @@ class WeatherActivity : AppCompatActivity() {
         tv_life_index_carWashing.text = lifeIndex.carWashing[0].desc
         tv_sun_sunRise.text = astro[0].sunrise.time
         tv_sun_sunSet.text = astro[0].sunset.time
-        weatherLayout.visibility = View.VISIBLE
+        sv_weather_layout.visibility = View.VISIBLE
     }
 
     override fun onResume() {

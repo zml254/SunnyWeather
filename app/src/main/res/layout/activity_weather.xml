@@ -6,7 +6,7 @@
     android:id="@+id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.WeatherActivity"
+    tools:context=".ui.activity.WeatherActivity"
     app:layoutDescription="@xml/activity_weather_scene">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -15,7 +15,7 @@
         android:id="@+id/swipeRefresh">
 
         <ScrollView
-            android:id="@+id/weatherLayout"
+            android:id="@+id/sv_weather_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible"
@@ -40,6 +40,8 @@
                 <include layout="@layout/include_weather_sun" />
 
                 <include layout="@layout/include_weather_wind" />
+
+                <include layout="@layout/include_weather_more" />
 
             </LinearLayout>
 

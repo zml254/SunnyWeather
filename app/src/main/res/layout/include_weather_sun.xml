@@ -22,7 +22,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="日出日落"
+            android:text="@string/sun_sunrise_sunset"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
             android:background="#EFEFEF"
             app:layout_constraintTop_toBottomOf="@id/sunText" />
 
-        <com.sunnyweather.android.ui.SunView
+        <com.sunnyweather.android.ui.view.SunView
             android:id="@+id/sunView"
             android:layout_width="match_parent"
             android:layout_height="160dp"

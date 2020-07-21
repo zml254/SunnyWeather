@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EFEFEF"
+    android:background="@color/bg_theme_color"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_marginStart="10dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:hint="输入地址"
+        android:hint="@string/place_input_address"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/search_bg" />
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="15dp"
-        android:text="搜索历史"
+        android:text="@string/place_search_history"
         app:layout_constraintTop_toBottomOf="@id/et_place_searchPlace"
         app:layout_constraintLeft_toLeftOf="@id/et_place_searchPlace" />
 

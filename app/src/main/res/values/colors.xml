@@ -5,4 +5,7 @@
     <color name="purple700">#3700B3</color>
     <color name="teal200">#03DAC5</color>
     <color name="black">#171717</color>
+    <color name="bg_theme_color">#EFEFEF</color>
+    <color name="color_white">#FFF</color>
+    <color name="color_write">#807979</color>
 </resources>
